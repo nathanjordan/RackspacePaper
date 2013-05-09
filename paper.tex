@@ -31,6 +31,8 @@
 \usepackage{titlesec}
 \usepackage{graphicx}
 
+\usepackage{listings}
+
 \usepackage{sectsty} % Enables custom section titles
 \allsectionsfont{\usefont{OT1}{phv}{b}{n}} % Change the font of all section commands
 
@@ -66,6 +68,48 @@
 
 \setlength{\columnsep}{2.0em}
 
+
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{goldfishOrange}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{white},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
+\DeclareCaptionFont{capB}{\usefont{OT1}{phv}{b}{n}\small}
+\DeclareCaptionFont{cap}{\usefont{OT1}{phv}{m}{n}\small}
+\captionsetup[lstlisting]{labelfont=capB,textfont=cap}
+
+\captionsetup[figure]{labelfont=capB,textfont=cap}
+
 %\titleformat{\section}
 %{\color{red}\normalfont\Large\bfseries}
 %{\color{red}\thesection}{1em}{}
@@ -80,15 +124,15 @@
 
 \pretitle{\vspace{-30pt} \begin{flushleft} \HorRule \fontsize{50}{50} \usefont{OT1}{phv}{b}{n} \color{goldfishWater} \selectfont} % Horizontal rule before the title
 
-\title{{\color{goldfishOrange}Rackspace:}\\The Open Cloud Company} % Your article title
+\title{{\color{goldfishOrange}Rackspace}\\The Open Cloud Company} % Your article title
 
 \posttitle{\par\end{flushleft}\vskip 0.5em} % Whitespace under the title
 
-\preauthor{\begin{flushleft}\large \lineskip 0.5em \usefont{OT1}{phv}{b}{sl} \color{goldfishOrange}} % Author font configuration
+\preauthor{\begin{flushleft}\large \lineskip 0.5em \usefont{OT1}{phv}{b}{n} \color{goldfishOrange}} % Author font configuration
 
 \author{Nathan Jordan } % Your name
 
-\postauthor{\footnotesize \usefont{OT1}{phv}{m}{sl} \color{dark-gray} % Configuration for the institution name
+\postauthor{\footnotesize \usefont{OT1}{phv}{m}{n} \color{dark-gray} % Configuration for the institution name
 University of Nevada, Reno Department of Computer Science % Your institution
 
 \par\end{flushleft}\HorRule} % Horizontal rule after the title
@@ -118,27 +162,37 @@ University of Nevada, Reno Department of Computer Science % Your institution
 %	ARTICLE CONTENTS
 %----------------------------------------------------------------------------------------
 
-\section*{\color{goldfishOrange}Introduction}
+\section*{Introduction}
 
 Founded in 1996 as a local ISP in a San Antonio garage, Rackspace has risen
 from its humble roots to a billion dollar company. Rackspace now has offices
 in Australia, the UK, the United Kingdom, Switzerland, The Netherlands, and Hong
 Kong. Additionally, they also operate data centers in Texas, Illinois, Virginia, The UK,
-Hong Kong and Australia. 
+Hong Kong and Australia. They also happen to host upwards of 40\% of the Fortune 100
+companies in the United States\cite{ref:rackspaceMain}.
+Rackspace was also voted as 34th best place to
+work in 2013, with a job growth of 22\% over 2012 \cite{ref:rackspaceBest}. After
+a brief stint as an ISP and web development company, Rackspace turned itself to
+the hosting business. In 2006, Rackspace purchased a company called Mosso Inc. 
+that worked on cloud computing software. This acquisition would serve as the 
+jumping off point for Rackspaces cloud offerings. 
 
-\section*{\color{goldfishOrange}Services}
+\section*{Services}
 
 As a large IT hosting provider targeting enterprise, Rackspace has many
 services available to clients. In terms of cloud computing, Rackspace
 offers everything from IaaS (Infrastructure as a Service), PaaS (Platform as a Service)
 to SaaS (Software as a Service). Any kind of service offered can be integrated
-with existing services, dependant on the needs of the organization.
+with existing services, dependent on the needs of the organization. Additionally,
+Rackspace offers dedicated hosting, as well as cloud storage and a monitoring
+service. Anything that an enterprise might need in terms of hosting, Rackspace
+can provide it to you. 
 
-\subsection*{\color{goldfishWater}Cloud Servers}
+\subsection*{Cloud Servers}
 
 Cloud Servers are the crux of Rackspace's open cloud involvement. These servers are
 OpenStack virtual machines running on a cluster in a Rackspace data center.
-They can be spun-up or spun-down dynamically via the rackspace website, or via
+They can be spun-up or spun-down dynamically via the Rackspace website, or via
 the API (which will be covered later). There are nine flavors of Linux to choose
 from, including free distributions like Ubuntu and CentOS and commercial distributions
 like Red Hat, as well as multiple variants of Windows Server 2008 and 2012. Each
@@ -148,7 +202,7 @@ on the particular performance flavor you choose. RAM capacity ranges from 512MB
 to 30GB and storage capacity of the instance varies from 20GB to 1.2TB.
 
 A screenshot of the web-based cloud management tool is shown below in 
-figure \ref{fig:cloudinterface}.
+Figure \ref{fig:cloudinterface}.
 
 \begin{figure}[ht!]
 \centering
@@ -174,11 +228,11 @@ too large or too small respectively. They also offer an uptime guarantee of
 
 Rackspace still offers dedicated servers to those who are not ready or comfortable
 to move to a virtualized cloud environment or have special performance or security
-concerns. A dedicated server, unlike their ''cloud' counterparts, is not virtualized,
+concerns. A dedicated server, unlike their "cloud'' counterparts, is not virtualized,
 and runs on bare metal. Some companies may wish to keep some services on dedicated
 hardware to provide a more stable environment for the applications that they
 are running or for development purposes.
-
+\\
 Regardless of the reason, Rackspace will manage the server and ensure that it is 
 running smoothly. They monitor the server for potential problems, apply security
 patches as they become available, create backups, and are available for 24/7
@@ -191,6 +245,7 @@ exclusively to a particular organization. It offers the flexibility of an
 open cloud, with the added security usually exhibited by dedicated in-house
 solutions. Rackspace can help you host your own private cloud in your own datacenter,
 a datacenter of your choosing, or at a Rackspace datacenter with exclusive hardware.
+\\
 Typically a private cloud is used when the organization wants to have dynamic
 cloud features like dynamic instancing, but are prevented from hosting an open
 cloud because of highly sensitive information being stored on the cloud or
@@ -208,7 +263,7 @@ maintain a virtualized environment on the Rackspace cloud. The environment
 provides access to many VMWare products, including vSphere, which is a
 cloud operating system. As with other managed solutions at Rackspace, 
 the environment can be monitored, managed, and designed by Rackspace 
-exployees who are experts in the field.
+employees who are experts in the field.
 
 \subsection*{Cloud Files}
 
@@ -240,7 +295,7 @@ applications.
 
 In many enterprise applications, the size of a relational database can
 become exceedingly large. As the database grows, its performance will 
-decrease and you may end up spending an equally large ammount on upgrading
+decrease and you may end up spending an equally large amount on upgrading
 hardware to achieve the performance that you need. By distributing the
 database across multiple machines using sharding, Rackspace can scale
 a MySQL database as it grows so you don't need to continue spending 
@@ -274,25 +329,26 @@ tests that monitor the response of your application.
 
 \subsection*{Load Balancing}
 
-In order to scale with the massive ammount of traffic and processing
+In order to scale with the massive amount of traffic and processing
 required by large-scale applications, the workload must be distributed
 across multiple machines to maintain acceptable performance. Rackspace
 provides load balancers that help perform this task. Load balancers
 take the incoming traffic and distribute amongst a list of nodes that
-will handle the requests indipendently of eachother. The algorithm
+will handle the requests independently of each other. The algorithm
 used to distribute traffic can be changed to fit the users needs, and
 includes round robin, weighted round robin, least connections, weighted
 least connections, and random.
 
-\subsection*{'RackConnect'}
+\subsection*{"RackConnect''}
 
 Sometimes a company may want to maintain a traditional dedicated server
 while still having access to the features of a dynamic cloud. This is
 called a hybrid cloud and it is becoming increasingly common in enterprise
 scenarios. By using a hybrid cloud, an organization can maintain their
-existing dedicated infastructure and still take advantage of dynamic
+existing dedicated infrastructure and still take advantage of dynamic
 cloud features, including cloud servers, cloud storage, and databases,
 even when the dedicated servers are in-house at the organization.
+\\
 Any cloud-based feature available to Rackspace customers can be used
 by an organization without having to migrate their systems. RackConnect 
 works by creating a VPN between the organization's network and Rackspace.
@@ -306,26 +362,89 @@ they didn't have a way for them to be managed programatically. All
 non-dedicated cloud services have API calls through various methods
 (typically JSON or XML) that allow you to control every aspect of 
 your cloud. This is where the real power of the Rackspace cloud
-comes from. You can spin up instances and destroy them as neccessary,
+comes from. You can spin up instances and destroy them as necessary,
 create new load balancers on the fly, add files to the Akamai CDN, 
-backup your data, or setup new alerts, all via the API.
+backup your data, or setup new alerts, all via the API. An example request
+to the Rackspace API is shown in Listing \ref{code:sample}.
+
+\vfill
+
+\pagebreak
+
+\begin{lstlisting}[language={JavaScript},caption={A JSON object directing the Rackspace API to create a new Ubuntu server.},label={code:sample}]
+
+{
+    "server": {
+        "name": "new-server-test",
+        "min_count": 1,
+        "max_count": 1,
+        "imageRef": "5f68715f-201f-4600-b5a1-0b97e2b1cb31",
+        "flavorRef": "2",
+        "diskConfig": "auto",
+        "metadata": {
+            "My Server Name": "Ubuntu 10.04 LTS"
+        }
+    }
+}
+
+\end{lstlisting}
 
 \section*{Rackspace \& Amazon Web Services}
 
-When we discuss cloud computing,
-
-\cite{lolz}
+When on the topic of publicly hosted clouds, there are generally two
+companies that come up: Amazon and Rackspace. Both are huge players
+in the cloud computing arena and offer similar services, but which one 
+should you choose? It really comes down to a matter of preference and
+what you will be using the cloud for. Amazon Web Services offers a host
+of higher-level features that make it convenient to quickly accomplish
+certain tasks. Features like Elastic Beanstalk, which allows users to
+execute web applications that dynamically scale based on the load, aren't
+present in Rackspace's service offerings. This can still be done in
+a Rackspace cloud, however it is not as simple to do. In this regard,
+Amazon makes more sense for smaller companies and individuals who might
+just want to get their application up and running quickly and easily
+rather than developing their own solution to the problem. Configuring
+instances manually for a web application gives you much more control in
+large-scale mission-critical systems. That being said, scrappy 
+entrepreneurial programmers trying to create the next Instagram are probably
+not Rackspace's target audience.
+\\
+Rackspace focuses largely on support
+and their managed hosting solutions, providing so-called "Fanatical
+Support\textsuperscript{TM}'' to its clients: something that enterprises looking to
+get into the cloud that don't know much about it would be interested
+in having. It comes as no surprise that Rackspace has garnered the role
+of hosting over 40\% of the Fortune 100 companies\cite{ref:rackspaceMain} by focusing on 
+support and stability rather than convenient features provided by
+Amazon (not that AWS is unstable).
+\\
+So when it comes time to make a decision
+between these providers, its really best to understand your needs as
+a cloud user. If you are a large business with a hefty IT footprint
+already and might need some help getting in the door, Rackspace is probably
+the better choice. However if you are a small company or individual
+looking to get a fresh start in cloud computing, Amazon might be better
+suited for your needs.
 
 \section*{Conclusion}
 
-This is what I talked about.
+Rackspace provides a myriad of useful cloud computing services. Almost everything
+that you might need in an enterprise environment can be provided with a hearty
+helping of "Fanatical Support\textsuperscript{TM}''. As Rackspace continues to 
+grow their userbase and aquire innovative companies like ObjectRocket (acquired in 2013)
+\cite{ref:objectrocket}, we will most likely see a wealth of new features and
+improvements that further the ubiquity and utility of the cloud in the future.
 
+\vfill
 
 %----------------------------------------------------------------------------------------
 %	REFERENCE LIST
 %----------------------------------------------------------------------------------------
 
 \bibliographystyle{IEEEtran}
+
+\pagebreak
+
 \bibliography{refs}
 
 %\begin{thebibliography}{99} % Bibliography - this is intentionally simple in this template
